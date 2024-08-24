@@ -1,0 +1,21 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navbar__container {
+    display: flex;
+    justify-content: space-between;
+}
+.navbar__logo {
+  width: 82.47px;
+  height: 18.02px;
+}
+.navbar__login{
+    text-transform: none;
+    background-color:  #E61C5D;
+    color: #fff;
+    padding: 0.5rem 3rem;
+}
