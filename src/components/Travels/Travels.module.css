@@ -1,0 +1,28 @@
+.travels{
+  width: 100%;
+  padding: 5rem 3rem;
+}
+.travels__container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+.travels__title{
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+.travels__findMe{
+  display: flex;
+  align-items: center;
+}
+.travels__findMe__icon{
+  width: 100%;
+  color: #f65261;
+  margin-right: 0.5rem;
+}
+.travels__findMe__span{
+  color: slategray;
+  font-weight: 500;
+}

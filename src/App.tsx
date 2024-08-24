@@ -1,15 +1,16 @@
-import { Box } from "@mui/material";
-import "./App.css";
 import { Navbar } from "./components/Navbar/Navbar";
+import { Travels } from "./components/Travels/Travels";
+
+import s from "./App.module.css";
 
 function App() {
 	return (
-		<Box>
+		<>
 			<Navbar />
-			<Box className="app">
-				<h1>hello World</h1>
-			</Box>
-		</Box>
+			<div className={s.app}>
+				<Travels />
+			</div>
+		</>
 	);
 }
 
