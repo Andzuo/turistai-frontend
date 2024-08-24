@@ -1,4 +1,4 @@
-import PlaceIcon from "@mui/icons-material/Place";
+import FmdGoodIcon from "@mui/icons-material/FmdGood";
 
 import s from "./Travels.module.css";
 
@@ -7,7 +7,7 @@ export const Travels = () => {
 		<div className={s.travels}>
 			<div className={s.travels__container}>
 				<div className={s.travels_findMe}>
-					<PlaceIcon className={s.travels__findMe__icon} />
+					<FmdGoodIcon className={s.travels__findMe__icon} />
 					<span id="findMe" className={s.travels__findMe__span}>
 						Você está em Recife
 					</span>
