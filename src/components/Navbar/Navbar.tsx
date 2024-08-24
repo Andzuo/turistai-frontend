@@ -1,18 +1,16 @@
-import { Button, IconButton, Toolbar, AppBar } from "@mui/material";
-
 import { Logo } from "../assets/Logo";
-
 import s from "./Navbar.module.css";
 
 export const Navbar = () => {
 	return (
-		<AppBar className={s.navbar}>
-			<Toolbar className={s.navbar__container}>
-				<IconButton className={s.navbar__logo}>
+		<header className={s.navbarRoot}>
+			<nav className={s.navbar_container}>
+				<div className={s.navbar_logo}>
 					<Logo />
-				</IconButton>
-				<Button className={s.navbar__login}>Login</Button>
-			</Toolbar>
-		</AppBar>
+				</div>
+				{/* biome-ignore lint/a11y/useButtonType: <explanation> */}
+				<button className={s.navbar_login}>Login</button>
+			</nav>
+		</header>
 	);
 };
