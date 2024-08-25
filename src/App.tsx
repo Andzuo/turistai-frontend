@@ -1,16 +1,18 @@
-import { Navbar } from "./components/Navbar/Navbar";
-import { Travels } from "./components/Travels/Travels";
-
 import s from "./App.module.css";
-import { Calendar } from "./components/Calendar/Calendar";
+import { Route, Routes } from "react-router-dom";
+import { Login } from "./pages/sign-in/Login";
+import { Cadastro } from "./pages/sign-up/Cadastro";
+import { Home } from "./pages/home/Home";
 
 function App() {
 	return (
 		<>
-			<Navbar />
 			<div className={s.app}>
-				<Travels />
-				<Calendar />
+				<Routes>
+					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="/cadastro" element={<Cadastro />} />
+				</Routes>
 			</div>
 		</>
 	);
