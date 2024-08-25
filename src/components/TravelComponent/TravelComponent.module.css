@@ -1,0 +1,35 @@
+.travel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 300px; /* Ajuste conforme necessário */
+}
+
+.travel_image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.travel__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 16px 0 8px 16px;
+}
+
+.travel__description {
+  font-size: 1rem;
+  color: #5A5A5A;
+  margin: 0 0 16px 16px;
+}
+
+.travel__date {
+  font-size: 0.875rem;
+  color: #999999;
+  margin: 0 0 16px 16px;
+}
