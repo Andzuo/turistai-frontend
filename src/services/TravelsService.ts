@@ -15,7 +15,7 @@ export const getAllTravels = async (userId: number): Promise<TravelData[]> => {
 
 export const createTravel = async (travel: TravelData): Promise<void> => {
 	try {
-		await axios.post(API_URL, travel);
+		await axios.post(`${API_URL}`, "/criar");
 	} catch (error) {
 		console.error("Error creating travel:", error);
 		throw error;
