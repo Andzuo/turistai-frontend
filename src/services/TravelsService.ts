@@ -1,32 +1,26 @@
 import axios from "axios";
 import type { TravelData } from "../interface/Travelprops";
 
-const API_URL = "http://localhost:8080/api/travel"; // Altere conforme a URL da sua API
-
-export const getAllTravels = async (userId: number): Promise<TravelData[]> => {
+export const getAllTravels = async (): Promise<TravelData[]> => {
 	try {
-		const response = await axios.get(`${API_URL}?userId=${userId}`);
+		const tokenObj = localStorage.getItem("acessToken");
+		if (!tokenObj) {
+			throw new Error("No access token found");
+		}
+
+		const token = JSON.parse(tokenObj).token;
+
+		const response = await axios.get(
+			"http://localhost:8080/api/travels/listar",
+			{
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			},
+		);
+
 		return response.data;
 	} catch (error) {
-		console.error("Error fetching travels:", error);
-		throw error;
-	}
-};
-
-export const createTravel = async (travel: TravelData): Promise<void> => {
-	try {
-		await axios.post(`${API_URL}`, "/criar");
-	} catch (error) {
-		console.error("Error creating travel:", error);
-		throw error;
-	}
-};
-
-export const deleteTravel = async (travelId: number): Promise<void> => {
-	try {
-		await axios.delete(`${API_URL}/${travelId}`);
-	} catch (error) {
-		console.error("Error deleting travel:", error);
-		throw error;
+		throw error as string;
 	}
 };

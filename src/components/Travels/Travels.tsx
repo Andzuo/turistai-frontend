@@ -1,7 +1,6 @@
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
-
 import s from "./Travels.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
 	Button,
 	Dialog,
@@ -17,8 +16,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DateField } from "@mui/x-date-pickers/DateField";
 import dayjs from "dayjs";
-
-import { createTravel } from "../../services/TravelsService";
+import { getAllTravels } from "../../services/TravelsService";
 
 const defaultTravel: TravelData = {
 	title: "",
@@ -30,41 +28,24 @@ const defaultTravel: TravelData = {
 };
 
 export const Travels = () => {
-	const exampleTravels: TravelData[] = [
-		{
-			id: 1,
-			userId: 123,
-			title: "Viagem para Paris",
-			description:
-				"Uma viagem maravilhosa para Paris com visita à Torre Eiffel.",
-			date: "2024-08-15",
-			image:
-				"https://viagemeturismo.abril.com.br/wp-content/uploads/2016/11/thinkstockphotos-4549879531.jpeg",
-		},
-		{
-			id: 2,
-			userId: 123,
-			title: "Viagem para Paris 2",
-			description:
-				"Uma viagem maravilhosa para Paris com visita à Torre Eiffel.",
-			date: "2024-08-15",
-			image:
-				"https://viagemeturismo.abril.com.br/wp-content/uploads/2016/11/thinkstockphotos-4549879531.jpeg",
-		},
-		{
-			id: 3,
-			userId: 123,
-			title: "Viagem para Paris 3",
-			description: "Uma terceira viagem maravilhosa para Paris.",
-			date: "2024-08-16",
-			image:
-				"https://viagemeturismo.abril.com.br/wp-content/uploads/2016/11/thinkstockphotos-4549879531.jpeg",
-		},
-	];
 	const [open, setOpen] = useState(false);
 	const [data, setData] = useState<TravelData>({
 		...defaultTravel,
 	});
+	const [travels, setTravels] = useState<TravelData[]>([]);
+
+	useEffect(() => {
+		const fetchTravels = async () => {
+			try {
+				const fetchedTravels = await getAllTravels();
+				setTravels(fetchedTravels);
+			} catch (error) {
+				console.error("Error fetching travels:", error);
+			}
+		};
+
+		fetchTravels();
+	}, []);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -92,7 +73,7 @@ export const Travels = () => {
 					</div>
 				</div>
 				<div className={s.travels__list}>
-					{exampleTravels.map((travel) => (
+					{travels.map((travel) => (
 						<TravelComponent key={travel.id} travel={travel} />
 					))}
 				</div>
