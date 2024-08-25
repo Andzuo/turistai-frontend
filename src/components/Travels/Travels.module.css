@@ -1,6 +1,10 @@
 .travels{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 5rem 3rem;
+
 }
 .travels__container{
   display: flex;
@@ -26,3 +30,18 @@
   color: slategray;
   font-weight: 500;
 }
+.travels_create, button {
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #f65261;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
+button:hover {
+  background-color: #e04353;
+} 
