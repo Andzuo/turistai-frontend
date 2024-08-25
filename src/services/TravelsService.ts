@@ -40,7 +40,6 @@ export const createTravel = async (data: TravelData) => {
 				Authorization: `Bearer ${token}`,
 			},
 		});
-
 		return response.data;
 	} catch (error) {
 		throw error as string;
