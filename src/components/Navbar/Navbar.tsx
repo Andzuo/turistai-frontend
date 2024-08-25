@@ -11,12 +11,17 @@ export const Navbar = () => {
 
 	useEffect(() => {
 		const token = localStorage.getItem("acessToken");
-		setIsLoggedIn(!!token);
+		if (token) {
+			setIsLoggedIn(true);
+		} else {
+			setIsLoggedIn(false);
+		}
 	}, []);
 
 	const loginnav = () => {
 		navigate("/login");
 	};
+
 	return (
 		<header className={s.navbarRoot}>
 			<nav className={s.navbar_container}>
