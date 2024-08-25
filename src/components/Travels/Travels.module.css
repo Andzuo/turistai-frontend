@@ -1,47 +1,72 @@
-.travels{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.travels {
+  padding: 2rem 3rem;
   width: 100%;
-  padding: 5rem 3rem;
-
 }
-.travels__container{
+
+.travels__container {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: start;
 }
-.travels__title{
-  font-size: 2rem;
-  font-weight: 700;
+
+.travels__header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
   margin-bottom: 2rem;
 }
-.travels__findMe{
+
+.travels__findMe {
   display: flex;
+  flex-direction: column;
   align-items: center;
+  margin-right: 2rem;
 }
-.travels__findMe__icon{
-  width: 100%;
+
+.travels__findMe__icon {
   color: #f65261;
   margin-right: 0.5rem;
 }
-.travels__findMe__span{
+
+.travels__findMe__span {
   color: slategray;
   font-weight: 500;
+  margin-right: 2rem;
 }
-.travels_create, button {
+
+.travels__title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-right: auto;
+}
+
+.travels__create {
+  display: flex;
+  align-items: center;
+}
+
+.travels__create button {
   font-size: 1rem;
   font-weight: 500;
   background-color: #f65261;
   color: #fff;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   border-radius: 5px;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
   outline: none;
 }
-button:hover {
+
+.travels__create button:hover {
   background-color: #e04353;
-} 
+}
+
+.travels__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-content: space-between;
+  width: 100%;
+}
