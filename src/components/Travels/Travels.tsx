@@ -12,6 +12,22 @@ import {
 } from "@mui/material";
 import type { TravelData } from "../../interface/Travelprops";
 import TravelComponent from "../TravelComponent/TravelComponent";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DateField } from "@mui/x-date-pickers/DateField";
+import dayjs from "dayjs";
+
+import { createTravel } from "../../services/TravelsService";
+
+const defaultTravel: TravelData = {
+	title: "",
+	description: "",
+	date: "",
+	image: "",
+	id: 0,
+	userId: 0,
+};
 
 export const Travels = () => {
 	const exampleTravels: TravelData[] = [
@@ -22,7 +38,8 @@ export const Travels = () => {
 			description:
 				"Uma viagem maravilhosa para Paris com visita à Torre Eiffel.",
 			date: "2024-08-15",
-			image: "",
+			image:
+				"https://viagemeturismo.abril.com.br/wp-content/uploads/2016/11/thinkstockphotos-4549879531.jpeg",
 		},
 		{
 			id: 2,
@@ -31,7 +48,8 @@ export const Travels = () => {
 			description:
 				"Uma viagem maravilhosa para Paris com visita à Torre Eiffel.",
 			date: "2024-08-15",
-			image: "",
+			image:
+				"https://viagemeturismo.abril.com.br/wp-content/uploads/2016/11/thinkstockphotos-4549879531.jpeg",
 		},
 		{
 			id: 3,
@@ -39,10 +57,14 @@ export const Travels = () => {
 			title: "Viagem para Paris 3",
 			description: "Uma terceira viagem maravilhosa para Paris.",
 			date: "2024-08-16",
-			image: "",
+			image:
+				"https://viagemeturismo.abril.com.br/wp-content/uploads/2016/11/thinkstockphotos-4549879531.jpeg",
 		},
 	];
 	const [open, setOpen] = useState(false);
+	const [data, setData] = useState<TravelData>({
+		...defaultTravel,
+	});
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -81,12 +103,14 @@ export const Travels = () => {
 				<DialogContent>
 					<TextField
 						autoFocus
+						helperText="Por favor, insira o título da viagem."
 						margin="dense"
 						id="title"
 						label="Título"
 						type="text"
 						fullWidth
 						variant="outlined"
+						value={data.title}
 					/>
 					<TextField
 						margin="dense"
@@ -95,7 +119,13 @@ export const Travels = () => {
 						type="text"
 						fullWidth
 						variant="outlined"
+						value={data.description}
 					/>
+					<LocalizationProvider dateAdapter={AdapterDayjs}>
+						<DemoContainer components={["DateField"]}>
+							<DateField value={dayjs(data.date)} label="Data da viagem" />
+						</DemoContainer>
+					</LocalizationProvider>
 				</DialogContent>
 				<DialogActions>
 					<Button onClick={handleClose} color="primary">

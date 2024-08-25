@@ -13,7 +13,6 @@ const TravelComponent: React.FC<TravelComponentProps> = ({ travel }) => {
 				<img className={s.travel_image} src={travel.image} alt={travel.title} />
 			)}
 			<h1 className={s.travel__title}>{travel.title}</h1>
-			<p className={s.travel__description}>{travel.description}</p>
 			<p className={s.travel__date}>
 				{new Date(travel.date).toLocaleDateString()}
 			</p>
