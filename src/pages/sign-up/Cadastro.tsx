@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import s from "./Cadastro.module.css";
 import { createUser } from "../../services/UserService";
 import { useNavigate } from "react-router-dom";
@@ -62,6 +62,9 @@ export const Cadastro = () => {
 					<button type="submit" className={s.cadastro__form__button}>
 						Cadastrar
 					</button>
+					<p className={s.cadastro__form__span}>
+						Já possui uma conta? <a href="/login">Faça login</a>
+					</p>
 				</form>
 			</div>
 		</div>

@@ -71,3 +71,12 @@
 .cadastro__form__button:hover {
   background-color: #e04353;
 }
+.cadastro__form__span {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+}
+a {
+  color: #f65261;
+  text-decoration: none;
+}
