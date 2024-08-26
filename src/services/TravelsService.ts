@@ -52,6 +52,7 @@ export const createTravel = async (
 			{ ...data, userId, image: imageUrl }, // Inclui o userId e imageUrl na requisição
 			{
 				headers: {
+					"Content-Type": "application/json",
 					Authorization: `Bearer ${token}`,
 				},
 			},

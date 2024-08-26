@@ -1,5 +1,4 @@
 import type { TravelData } from "../../interface/Travelprops";
-
 import s from "./TravelComponent.module.css";
 
 interface TravelComponentProps {
