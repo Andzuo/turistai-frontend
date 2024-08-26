@@ -12,6 +12,7 @@ import dayjs from "dayjs";
 import { createTravel } from "../../services/TravelsService";
 import s from "./TravelModal.module.css";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { uploadImage } from "../../services/UploadService";
 dayjs.extend(customParseFormat);
 
 interface TravelModalProps {
@@ -23,14 +24,20 @@ const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 	const [data, setData] = useState({
 		title: "",
 		description: "",
-		date: dayjs().format("DD/MM/YYYY"), // Inicializa com a data atual no formato brasileiro
+		date: dayjs().format("DD/MM/YYYY"),
 	});
-
+	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const [errors, setErrors] = useState({
 		title: "",
 		description: "",
 		date: "",
 	});
+
+	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (event.target.files && event.target.files.length > 0) {
+			setSelectedFile(event.target.files[0]);
+		}
+	};
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { id, value } = event.target;
@@ -41,14 +48,14 @@ const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 		setData((prev) => ({
 			...prev,
 			date: newValue
-				? newValue.format("DD/MM/YYYY") // Formata a data para o formato brasileiro
+				? newValue.format("DD/MM/YYYY")
 				: dayjs().format("DD/MM/YYYY"),
 		}));
 	};
 
 	const validateFields = () => {
 		let isValid = true;
-		const newErrors: { title: string; description: string; date: string } = {
+		const newErrors = {
 			title: "",
 			description: "",
 			date: "",
@@ -75,22 +82,31 @@ const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 
 	const handleSave = async () => {
 		if (!validateFields()) {
-			return; // Não prosseguir se a validação falhar
+			return;
 		}
 
 		try {
-			console.log("Saving travel with data:", data);
+			let imageUrl: string | null = null;
 
-			await createTravel({
-				title: data.title,
-				description: data.description,
-				date: data.date, // Envia a data no formato brasileiro
-			});
+			if (selectedFile) {
+				const formData = new FormData();
+				formData.append("file", selectedFile);
 
+				const uploadResponse = await uploadImage(formData);
+				console.log("Upload realizado com sucesso:", uploadResponse);
+				imageUrl = uploadResponse; // Ajuste conforme o retorno do upload
+			}
+
+			const travelData = {
+				...data,
+				imageUrl,
+			};
+
+			const response = await createTravel(travelData);
+			console.log("Viagem criada com sucesso:", response);
 			onClose();
-			window.location.reload(); // Recarrega a página após salvar
 		} catch (error) {
-			console.error("Error saving travel:", error);
+			console.error("Erro ao salvar viagem:", error);
 		}
 	};
 
@@ -130,6 +146,12 @@ const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 						onChange={handleDateChange}
 					/>
 				</LocalizationProvider>
+				<input
+					type="file"
+					accept="image/*"
+					onChange={handleFileChange}
+					style={{ marginTop: "1rem" }}
+				/>
 			</DialogContent>
 			<DialogActions className={s.modal__actions}>
 				<Button
