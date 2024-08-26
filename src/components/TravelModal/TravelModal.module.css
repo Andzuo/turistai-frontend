@@ -1,0 +1,66 @@
+.modal{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(201, 196, 196);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal__title{
+  text-align: center;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: bolder;
+    color: #1d1d1d;
+    margin-bottom: 1rem;
+}
+
+.modal__inputs{
+    display: flex;
+    flex-direction: column  ;
+    width: 32rem;
+    align-items: start;
+    gap: 1rem;
+    outline: none !important;
+    padding: 1rem;
+    background-color: #fff;
+}
+
+
+.modal__actions{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 100px;
+}
+
+.modal__actions__button {
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #f65261 !important;
+  color: #fff !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
+
+.modal__actions__button:hover {
+  background-color: #e04353;
+}
+
+.modal__actions__button__cancel {
+  background-color: #1d1d1d !important;
+  color: #fff !important;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  outline: none;
+}

@@ -6,20 +6,8 @@ import TravelComponent from "../TravelComponent/TravelComponent";
 import { getAllTravels } from "../../services/TravelsService";
 import TravelModal from "../TravelModal/TravelModal";
 
-const defaultTravel: TravelData = {
-	title: "",
-	description: "",
-	date: "",
-	image: "",
-	id: 0,
-	userId: 0,
-};
-
 export const Travels = () => {
-	const [open, setOpen] = useState(true);
-	const [data, setData] = useState<TravelData>({
-		...defaultTravel,
-	});
+	const [open, setOpen] = useState(false);
 	const [travels, setTravels] = useState<TravelData[]>([]);
 
 	useEffect(() => {
@@ -67,7 +55,7 @@ export const Travels = () => {
 					))}
 				</div>
 			</div>
-			<TravelModal open={open} onClose={() => setOpen(false)} />
+			<TravelModal open={open} onClose={handleClose} />
 		</div>
 	);
 };

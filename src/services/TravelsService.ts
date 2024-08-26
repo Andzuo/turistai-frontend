@@ -26,7 +26,7 @@ export const getAllTravels = async (): Promise<TravelData[]> => {
 	}
 };
 
-export const createTravel = async (data: TravelData) => {
+export const createTravel = async (data: Omit<TravelData, "id" | "userId">) => {
 	try {
 		const tokenObj = localStorage.getItem("acessToken");
 		if (!tokenObj) {
@@ -34,12 +34,17 @@ export const createTravel = async (data: TravelData) => {
 		}
 
 		const token = JSON.parse(tokenObj).token;
+		const userId = JSON.parse(atob(token.split(".")[1])).userId; // Extrai o userId do payload do JWT
 
-		const response = await api.post("/criar", data, {
-			headers: {
-				Authorization: `Bearer ${token}`,
+		const response = await api.post(
+			"/criar",
+			{ ...data, userId }, // Inclui o userId na requisição
+			{
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
 			},
-		});
+		);
 		return response.data;
 	} catch (error) {
 		throw error as string;
