@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import type { TravelData } from "../../interface/Travelprops";
 import TravelComponent from "../TravelComponent/TravelComponent";
 import { getAllTravels } from "../../services/TravelsService";
-import TravelModal from "../TravelModal/TravelModal";
+import { TravelModal } from "../TravelModal/TravelModal";
 
 export const Travels = () => {
 	const [open, setOpen] = useState(false);

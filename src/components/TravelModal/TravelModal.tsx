@@ -3,16 +3,11 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
 import { createTravel } from "../../services/TravelsService";
 import s from "./TravelModal.module.css";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import { uploadImage } from "../../services/UploadService";
 dayjs.extend(customParseFormat);
 
 interface TravelModalProps {
@@ -20,37 +15,27 @@ interface TravelModalProps {
 	onClose: () => void;
 }
 
-const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
+export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 	const [data, setData] = useState({
 		title: "",
 		description: "",
-		date: dayjs().format("DD/MM/YYYY"),
+		date: dayjs().format("dd/mm/yyyy"), // Padrão de data do input
+		file: null as File | null,
 	});
-	const [selectedFile, setSelectedFile] = useState<File | null>(null);
 	const [errors, setErrors] = useState({
 		title: "",
 		description: "",
 		date: "",
 	});
 
-	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (event.target.files && event.target.files.length > 0) {
-			setSelectedFile(event.target.files[0]);
-		}
-	};
-
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const { id, value } = event.target;
-		setData((prev) => ({ ...prev, [id]: value }));
-	};
+		const { id, value, files } = event.target;
 
-	const handleDateChange = (newValue: dayjs.Dayjs | null) => {
-		setData((prev) => ({
-			...prev,
-			date: newValue
-				? newValue.format("DD/MM/YYYY")
-				: dayjs().format("DD/MM/YYYY"),
-		}));
+		if (id === "file" && files) {
+			setData((prev) => ({ ...prev, file: files[0] }));
+		} else {
+			setData((prev) => ({ ...prev, [id]: value }));
+		}
 	};
 
 	const validateFields = () => {
@@ -71,7 +56,7 @@ const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 			isValid = false;
 		}
 
-		if (!data.date || dayjs(data.date, "DD/MM/YYYY").isValid() === false) {
+		if (!data.date || dayjs(data.date, "YYYY-MM-DD").isValid() === false) {
 			newErrors.date = "Data inválida";
 			isValid = false;
 		}
@@ -80,33 +65,32 @@ const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 		return isValid;
 	};
 
+	const formatDateForBackend = (date: string) => {
+		const [year, month, day] = date.split("-");
+		return `${day}-${month}-${year}`; // O back-end está esperando esse formato DD-MM-YYYY
+	};
+
 	const handleSave = async () => {
 		if (!validateFields()) {
 			return;
 		}
 
+		const formattedDate = formatDateForBackend(data.date);
+
+		const travelData = {
+			title: data.title,
+			description: data.description,
+			date: formattedDate,
+			file: data.file || null || undefined,
+		};
+
 		try {
-			let imageUrl: string | null = null;
-
-			if (selectedFile) {
-				const formData = new FormData();
-				formData.append("file", selectedFile);
-
-				const uploadResponse = await uploadImage(formData);
-				console.log("Upload realizado com sucesso:", uploadResponse);
-				imageUrl = uploadResponse; // Ajuste conforme o retorno do upload
-			}
-
-			const travelData = {
-				...data,
-				imageUrl,
-			};
-
-			const response = await createTravel(travelData);
-			console.log("Viagem criada com sucesso:", response);
+			await createTravel(travelData);
 			onClose();
+			window.location.reload();
 		} catch (error) {
-			console.error("Erro ao salvar viagem:", error);
+			alert("Erro ao criar viagem");
+			console.log("travel data", formattedDate);
 		}
 	};
 
@@ -114,43 +98,32 @@ const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 		<Dialog className={s.modal} open={open} onClose={onClose}>
 			<DialogTitle className={s.modal__title}>Criar Viagem</DialogTitle>
 			<DialogContent className={s.modal__inputs}>
-				<TextField
-					autoFocus
-					margin="dense"
+				<input
 					id="title"
-					label="Título"
+					placeholder="Título"
 					type="text"
-					fullWidth
-					variant="outlined"
 					value={data.title}
 					onChange={handleChange}
-					error={!!errors.title}
-					helperText={errors.title}
+					required
 				/>
-				<TextField
-					margin="dense"
+				<input
 					id="description"
-					label="Descrição"
+					placeholder="Descrição"
 					type="text"
-					fullWidth
-					variant="outlined"
 					value={data.description}
 					onChange={handleChange}
-					error={!!errors.description}
-					helperText={errors.description}
 				/>
-				<LocalizationProvider dateAdapter={AdapterDayjs}>
-					<DatePicker
-						label="Data da sua viagem"
-						value={dayjs(data.date, "DD/MM/YYYY")}
-						onChange={handleDateChange}
-					/>
-				</LocalizationProvider>
 				<input
+					id="date"
+					type="date"
+					value={data.date}
+					onChange={handleChange}
+				/>
+				<input
+					id="file"
 					type="file"
 					accept="image/*"
-					onChange={handleFileChange}
-					style={{ marginTop: "1rem" }}
+					onChange={handleChange} // Importante para capturar o arquivo
 				/>
 			</DialogContent>
 			<DialogActions className={s.modal__actions}>
@@ -172,5 +145,3 @@ const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 		</Dialog>
 	);
 };
-
-export default TravelModal;

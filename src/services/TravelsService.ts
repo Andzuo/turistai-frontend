@@ -1,6 +1,5 @@
 import axios from "axios";
 import type { TravelData } from "../interface/Travelprops";
-import { uploadImage } from "./UploadService";
 
 const api = axios.create({
 	baseURL: "http://localhost:8080/api/travels",
@@ -28,8 +27,7 @@ export const getAllTravels = async (): Promise<TravelData[]> => {
 };
 
 export const createTravel = async (
-	data: Omit<TravelData, "id" | "userId">,
-	imageFile?: File,
+	data: Omit<TravelData, "id" | "userId"> & { file?: File }, // Inclui o campo file opcionalmente
 ) => {
 	try {
 		const tokenObj = localStorage.getItem("acessToken");
@@ -38,27 +36,46 @@ export const createTravel = async (
 		}
 
 		const token = JSON.parse(tokenObj).token;
-		const userId = JSON.parse(atob(token.split(".")[1])).userId; // Extrai o userId do payload do JWT
 
-		let imageUrl = "";
-		if (imageFile) {
-			const formData = new FormData();
-			formData.append("image", imageFile);
-			imageUrl = await uploadImage(formData);
+		const formData = new FormData();
+		formData.append("title", data.title);
+		formData.append("description", data.description);
+		formData.append("date", data.date);
+
+		if (data.file) {
+			formData.append("file", data.file);
 		}
 
-		const response = await api.post(
-			"/criar",
-			{ ...data, userId, image: imageUrl }, // Inclui o userId e imageUrl na requisição
-			{
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
+		const response = await api.post("/criar", formData, {
+			headers: {
+				"Content-Type": "multipart/form-data",
+				Authorization: `Bearer ${token}`,
 			},
-		);
+		});
+
 		return response.data;
 	} catch (error) {
 		throw error as string;
+	}
+};
+export const fetchImage = async (imageName: string): Promise<Blob> => {
+	try {
+		// Obter o token do localStorage
+		const tokenObj = localStorage.getItem("acessToken");
+		if (!tokenObj) {
+			throw new Error("No access token found");
+		}
+		const token = JSON.parse(tokenObj).token;
+
+		const response = await api.get(`/imagem/${imageName}`, {
+			responseType: "blob",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		return response.data;
+	} catch (error) {
+		throw new Error(`Erro ao buscar imagem: ${error}`);
 	}
 };
