@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Logo } from "../assets/Logo";
 import s from "./Navbar.module.css";
 import { useNavigate } from "react-router-dom";
-
-const UserIcon = () => <img src="" alt="User Icon" className={s.userIcon} />;
+import Profile from "../Profile/Profile";
 
 export const Navbar = () => {
+	const [open, setOpen] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const navigate = useNavigate();
 
@@ -30,7 +30,9 @@ export const Navbar = () => {
 				</div>
 				<div className={s.navbar_actions}>
 					{isLoggedIn ? (
-						<UserIcon /> // Mostra o ícone do usuário quando logado
+						<div>
+							<Profile />
+						</div>
 					) : (
 						<button onClick={loginnav} type="button" className={s.navbar_login}>
 							Login
