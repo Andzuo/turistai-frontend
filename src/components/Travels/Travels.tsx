@@ -5,10 +5,12 @@ import type { TravelData } from "../../interface/Travelprops";
 import TravelComponent from "../TravelComponent/TravelComponent";
 import { getAllTravels } from "../../services/TravelsService";
 import { TravelModal } from "../TravelModal/TravelModal";
+import { useNavigate } from "react-router-dom";
 
 export const Travels = () => {
 	const [open, setOpen] = useState(false);
 	const [travels, setTravels] = useState<TravelData[]>([]);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchTravels = async () => {
@@ -24,8 +26,13 @@ export const Travels = () => {
 	}, []);
 
 	const handleClickOpen = () => {
-		console.log("Opening modal");
-		setOpen(true);
+		const token = localStorage.getItem("acessToken");
+		console.log(token);
+		if (token === null) {
+			navigate("/login");
+		} else {
+			setOpen(true);
+		}
 	};
 
 	const handleClose = () => {
