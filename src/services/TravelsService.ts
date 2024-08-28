@@ -81,3 +81,24 @@ export const fetchImage = async (imageName: string): Promise<Blob> => {
 		throw new Error(`Erro ao buscar imagem: ${error}`);
 	}
 };
+
+export const removeTravel = async (id: string) => {
+	try {
+		const tokenObj = localStorage.getItem("acessToken");
+		if (!tokenObj) {
+			throw new Error("No access token found");
+		}
+
+		const token = JSON.parse(tokenObj).token;
+
+		const response = await api.delete(`/delete/${id}`, {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		return response.data;
+	} catch (error) {
+		throw error as string;
+	}
+};
