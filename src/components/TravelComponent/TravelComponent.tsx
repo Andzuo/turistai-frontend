@@ -3,7 +3,7 @@ import type { TravelData } from "../../interface/Travelprops";
 import s from "./TravelComponent.module.css";
 import { fetchImage } from "../../services/TravelsService";
 import PlaceIcon from "@mui/icons-material/Place";
-
+import ImagePlaceholderIcon from "@mui/icons-material/Image";
 interface TravelComponentProps {
 	travel: TravelData;
 }
@@ -30,16 +30,18 @@ const TravelComponent: React.FC<TravelComponentProps> = ({ travel }) => {
 			if (imageUrl) {
 				URL.revokeObjectURL(imageUrl);
 			}
-			if (travel.image === null) {
-			}
 		};
 	}, [travel.image, imageUrl]);
 
 	return (
 		<div className={s.travel}>
 			<div className={s.travel__container}>
-				{imageUrl && (
+				{imageUrl ? (
 					<img className={s.travel_image} src={imageUrl} alt={travel.title} />
+				) : (
+					<div className={s.travel_image}>
+						<ImagePlaceholderIcon sx={{ width: "100%", height: "100%" }} />
+					</div>
 				)}
 				<div className={s.travel__container__content}>
 					<div className={s.travel__container__title}>
@@ -54,7 +56,6 @@ const TravelComponent: React.FC<TravelComponentProps> = ({ travel }) => {
 						{/* {travel.location} - <span>{travel.state}</span> */}
 					</p>
 				</div>
-				{/* <div className={s.travel__container__span}></div> */}
 			</div>
 		</div>
 	);

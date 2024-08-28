@@ -7,8 +7,8 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 350px;
-  min-height: 350px;
-  overflow: hidden; /* Para garantir que o conteúdo não ultrapasse os limites do card */
+  min-height: 300px;
+  overflow: hidden;
 }
 
 .travel__container {
@@ -23,8 +23,8 @@
   justify-content: space-between;
   padding: 16px;
   width: 100%;
-  min-height: 120px; /* Define uma altura mínima para garantir consistência */
-  box-sizing: border-box; /* Para incluir padding no cálculo da altura */
+  min-height: 100px;
+  box-sizing: border-box; 
 }
 
 .travel__container__span {
@@ -35,7 +35,7 @@
 
 .travel_image {
   width: 100%;
-  height: 200px; /* Define uma altura fixa para a imagem */
+  height: 200px;
   object-fit: cover;
   border-radius: 20px 20px 0 0;
 }
@@ -57,3 +57,4 @@
   color: #999999;
   margin: 0 0 16px 16px;
 }
+
