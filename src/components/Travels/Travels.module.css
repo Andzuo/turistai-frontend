@@ -6,7 +6,7 @@
 .travels__skeleton {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 3rem;
   justify-content: space-between;
   width: 100%;
 }
@@ -73,9 +73,9 @@
 
 .travels__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
-  justify-content: space-between; /* Alinha os itens do grid */
+  justify-content: space-between;
   width: 100%;
 }
 

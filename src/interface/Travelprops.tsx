@@ -4,6 +4,8 @@ export interface TravelData {
 	title: string;
 	description: string;
 	date: string;
+	location: string;
+	state: string;
 	image?: string;
 }
 

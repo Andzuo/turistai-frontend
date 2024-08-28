@@ -21,7 +21,7 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 		date: dayjs().format("dd/mm/yyyy"),
 		file: null as File | null,
 	});
-	const [errors, setErrors] = useState({
+	const [, setErrors] = useState({
 		title: "",
 		description: "",
 		date: "",

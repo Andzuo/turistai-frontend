@@ -4,16 +4,40 @@
   align-items: flex-start;
   background-color: white;
   border-radius: 20px;
-  overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 300px; /* Ajuste conforme necessário */
+  max-width: 350px;
+  min-height: 350px;
+  overflow: hidden; /* Para garantir que o conteúdo não ultrapasse os limites do card */
+}
+
+.travel__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.travel__container__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  width: 100%;
+  min-height: 120px; /* Define uma altura mínima para garantir consistência */
+  box-sizing: border-box; /* Para incluir padding no cálculo da altura */
+}
+
+.travel__container__span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .travel_image {
   width: 100%;
-  height: auto;
+  height: 200px; /* Define uma altura fixa para a imagem */
   object-fit: cover;
+  border-radius: 20px 20px 0 0;
 }
 
 .travel__title {
