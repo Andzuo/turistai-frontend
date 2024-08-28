@@ -70,7 +70,7 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 			return;
 		}
 
-		//funciona assim
+		//funciona assim não alterar
 		const formattedDate = dayjs(data.date).format("DD/MM/YYYY");
 
 		const travelData = {
@@ -91,8 +91,22 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 	};
 
 	return (
-		<Dialog className={s.modal} open={open} onClose={onClose}>
-			<DialogTitle className={s.modal__title}>Criar Viagem</DialogTitle>
+		<Dialog
+			sx={{
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center",
+				width: "100%",
+				height: "100%",
+				backgroundColor: "rgb(1, 0, 0, 0.2)",
+			}}
+			className={s.modal}
+			open={open}
+			onClose={onClose}
+		>
+			<div className={s.modal__title}>
+				<strong>Criar Viagem</strong>
+			</div>
 			<DialogContent className={s.modal__inputs}>
 				<input
 					id="title"
@@ -104,8 +118,8 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 				/>
 				<input
 					id="description"
-					placeholder="Descrição"
 					type="text"
+					placeholder="Descrição"
 					value={data.description}
 					onChange={handleChange}
 				/>
@@ -115,28 +129,49 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 					value={data.date}
 					onChange={handleChange}
 				/>
-				<input
-					id="file"
-					type="file"
-					accept="image/*"
-					onChange={handleChange} // Importante para capturar o arquivo
-				/>
+				<div className={s.img__container}>
+					<label htmlFor="file" className={s.img__label}>
+						Escolher imagem
+					</label>
+					<input
+						id="file"
+						type="file"
+						accept="image/*"
+						className={s.img}
+						onChange={handleChange}
+					/>
+					{data.file && (
+						<span className={s.img__filename}>{data.file.name}</span>
+					)}
+				</div>
 			</DialogContent>
-			<DialogActions className={s.modal__actions}>
-				<Button
-					className={s.modal__actions__button}
+			<DialogActions
+				sx={{
+					display: "flex",
+					width: "100%",
+					justifyContent: "center",
+					alignItems: "center",
+					gap: "1rem",
+					paddingBottom: "2rem",
+				}}
+				className={s.modal__actions}
+			>
+				<button
+					type="button"
+					className={s.modal__actions__button__cancel}
 					onClick={onClose}
 					color="primary"
 				>
 					Cancelar
-				</Button>
-				<Button
+				</button>
+				<button
+					type="submit"
 					className={s.modal__actions__button}
 					onClick={handleSave}
 					color="primary"
 				>
 					Salvar
-				</Button>
+				</button>
 			</DialogActions>
 		</Dialog>
 	);

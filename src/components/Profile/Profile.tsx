@@ -27,11 +27,17 @@ const Profile: React.FC = () => {
 	return (
 		<div>
 			<IconButton onClick={handleClick} color="inherit">
-				<AccountCircleIcon className={s.profile__icon} />
+				<AccountCircleIcon
+					sx={{
+						width: "40px",
+						height: "40px",
+					}}
+					className={s.profile__icon}
+				/>
 			</IconButton>
 			<Menu
 				sx={{
-					marginTop: "40px",
+					marginTop: "10px",
 					display: "inline-flex",
 					flexDirection: "column",
 				}}

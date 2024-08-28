@@ -46,7 +46,7 @@ export const Travels = () => {
 					<div className={s.travels__findMe}>
 						<span id="findMe" className={s.travels__findMe__span}>
 							<FmdGoodIcon className={s.travels__findMe__icon} />
-							Você está em Recife
+							Você está em <strong>Recife</strong>
 						</span>
 						<h1 className={s.travels__title}>Minhas viagens</h1>
 					</div>
