@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import Profile from "../Profile/Profile";
 
 export const Navbar = () => {
-	const [open, setOpen] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const navigate = useNavigate();
 
