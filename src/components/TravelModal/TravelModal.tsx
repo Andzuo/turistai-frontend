@@ -1,9 +1,7 @@
 import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import Button from "@mui/material/Button";
 import dayjs from "dayjs";
 import { createTravel } from "../../services/TravelsService";
 import s from "./TravelModal.module.css";
@@ -91,7 +89,6 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 			}, 2000);
 		} catch (error) {
 			toast.error("Erro ao criar viagem. Tente novamente mais tarde.");
-			console.log("travel data", formattedDate);
 		}
 	};
 
