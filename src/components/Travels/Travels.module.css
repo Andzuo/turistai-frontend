@@ -1,5 +1,6 @@
 .travels {
   width: 100%;
+  padding: 2rem;
 }
 
 .travels__container {
@@ -64,8 +65,41 @@
 
 .travels__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
-  justify-content: space-between;
+  justify-content: space-between; /* Alinha os itens do grid */
   width: 100%;
+}
+
+@media (max-width: 750px) {
+  .travels {
+    padding: 1rem;
+  }
+
+  .travels__header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .travels__findMe {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .travels__title {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .travels__create {
+    justify-content: center;
+  }
+
+  .travels__list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
