@@ -3,14 +3,6 @@
   padding: 2rem;
 }
 
-.travels__skeleton {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 3rem;
-  justify-content: space-between;
-  width: 100%;
-}
-
 .travels__container {
   display: flex;
   flex-direction: column;
@@ -71,14 +63,6 @@
   background-color: #e04353;
 }
 
-.travels__list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 2rem;
-  justify-content: space-between;
-  width: 100%;
-}
-
 @media (max-width: 750px) {
   .travels {
     padding: 1rem;
@@ -103,11 +87,4 @@
     justify-content: center;
   }
 
-  .travels__list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
 }
