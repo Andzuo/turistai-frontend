@@ -19,7 +19,7 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 	const [data, setData] = useState({
 		title: "",
 		description: "",
-		date: dayjs().format("dd/mm/yyyy"), // Padrão de data do input
+		date: dayjs().format("dd/mm/yyyy"),
 		file: null as File | null,
 	});
 	const [errors, setErrors] = useState({
@@ -65,17 +65,13 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 		return isValid;
 	};
 
-	const formatDateForBackend = (date: string) => {
-		const [year, month, day] = date.split("-");
-		return `${day}-${month}-${year}`; // O back-end está esperando esse formato DD-MM-YYYY
-	};
-
 	const handleSave = async () => {
 		if (!validateFields()) {
 			return;
 		}
 
-		const formattedDate = formatDateForBackend(data.date);
+		//funciona assim
+		const formattedDate = dayjs(data.date).format("DD/MM/YYYY");
 
 		const travelData = {
 			title: data.title,
