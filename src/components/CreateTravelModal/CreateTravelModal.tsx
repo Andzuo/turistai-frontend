@@ -4,7 +4,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import dayjs from "dayjs";
 import { createTravel } from "../../services/TravelsService";
-import s from "./TravelModal.module.css";
+import s from "./CreateTravelModal.module.css";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import { toast } from "react-toastify";
 dayjs.extend(customParseFormat);
