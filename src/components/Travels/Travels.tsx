@@ -6,10 +6,16 @@ import TravelComponent from "../TravelComponent/TravelComponent";
 import { getAllTravels } from "../../services/TravelsService";
 import { TravelModal } from "../TravelModal/TravelModal";
 import { useNavigate } from "react-router-dom";
+import { getLocationName } from "../../services/GeolocationService";
+import { Skeleton } from "@mui/material";
 
 export const Travels = () => {
 	const [open, setOpen] = useState(false);
 	const [travels, setTravels] = useState<TravelData[]>([]);
+	const [userLocation, setUserLocation] = useState<string>(
+		"Carregando localização...",
+	);
+	const [loading, setLoading] = useState<boolean>(true);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -19,10 +25,34 @@ export const Travels = () => {
 				setTravels(fetchedTravels);
 			} catch (error) {
 				console.error("Error fetching travels:", error);
+			} finally {
+				setLoading(false);
 			}
 		};
 
 		fetchTravels();
+	}, []);
+
+	useEffect(() => {
+		const fetchLocation = () => {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(
+					async (position) => {
+						const { latitude, longitude } = position.coords;
+						const locationName = await getLocationName(latitude, longitude);
+						setUserLocation(locationName);
+					},
+					(error) => {
+						console.error("Error getting location:", error);
+						setUserLocation("Localização não disponível");
+					},
+				);
+			} else {
+				setUserLocation("Geolocalização não suportada");
+			}
+		};
+
+		fetchLocation();
 	}, []);
 
 	const handleClickOpen = () => {
@@ -46,7 +76,7 @@ export const Travels = () => {
 					<div className={s.travels__findMe}>
 						<span id="findMe" className={s.travels__findMe__span}>
 							<FmdGoodIcon className={s.travels__findMe__icon} />
-							Você está em <strong>Recife</strong>
+							Você está em <strong>{userLocation}</strong>
 						</span>
 						<h1 className={s.travels__title}>Minhas viagens</h1>
 					</div>
@@ -56,11 +86,19 @@ export const Travels = () => {
 						</button>
 					</div>
 				</div>
-				<div className={s.travels__list}>
-					{travels.map((travel) => (
-						<TravelComponent key={travel.id} travel={travel} />
-					))}
-				</div>
+				{loading ? (
+					<div className={s.travels__skeleton}>
+						<Skeleton variant="rounded" width={310} height={210} />
+						<Skeleton variant="rounded" width={310} height={210} />
+						<Skeleton variant="rounded" width={310} height={210} />
+					</div>
+				) : (
+					<div className={s.travels__list}>
+						{travels.map((travel) => (
+							<TravelComponent key={travel.id} travel={travel} />
+						))}
+					</div>
+				)}
 			</div>
 			<TravelModal open={open} onClose={handleClose} />
 		</div>
