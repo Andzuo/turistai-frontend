@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import { createTravel } from "../../services/TravelsService";
 import s from "./TravelModal.module.css";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { toast } from "react-toastify";
 dayjs.extend(customParseFormat);
 
 interface TravelModalProps {
@@ -67,6 +68,7 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 
 	const handleSave = async () => {
 		if (!validateFields()) {
+			toast.error("Por favor, preencha todos os campos corretamente.");
 			return;
 		}
 
@@ -82,10 +84,13 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 
 		try {
 			await createTravel(travelData);
+			toast.success("Viagem criada com sucesso!");
 			onClose();
-			window.location.reload();
+			setTimeout(() => {
+				window.location.reload();
+			}, 2000);
 		} catch (error) {
-			alert("Erro ao criar viagem");
+			toast.error("Erro ao criar viagem. Tente novamente mais tarde.");
 			console.log("travel data", formattedDate);
 		}
 	};
