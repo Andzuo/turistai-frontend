@@ -20,6 +20,8 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 		description: "",
 		date: dayjs().format("dd/mm/yyyy"),
 		file: null as File | null,
+		location: "",
+		state: "",
 	});
 	const [, setErrors] = useState({
 		title: "",
@@ -78,6 +80,8 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 			description: data.description,
 			date: formattedDate,
 			file: data.file || null || undefined,
+			location: data.location,
+			state: data.state,
 		};
 
 		try {
@@ -129,6 +133,20 @@ export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
 					id="date"
 					type="date"
 					value={data.date}
+					onChange={handleChange}
+				/>
+				<input
+					id="location"
+					type="text"
+					placeholder="Local da viagem"
+					value={data.location}
+					onChange={handleChange}
+				/>
+				<input
+					id="state"
+					type="text"
+					placeholder="Estado"
+					value={data.state}
 					onChange={handleChange}
 				/>
 				<div className={s.img__container}>

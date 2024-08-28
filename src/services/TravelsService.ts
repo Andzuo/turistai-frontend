@@ -41,6 +41,8 @@ export const createTravel = async (
 		formData.append("title", data.title);
 		formData.append("description", data.description);
 		formData.append("date", data.date);
+		formData.append("location", data.location);
+		formData.append("state", data.state);
 
 		if (data.file) {
 			formData.append("file", data.file);

@@ -50,10 +50,9 @@ const TravelComponent: React.FC<TravelComponentProps> = ({ travel }) => {
 							{new Date(travel.date).toLocaleDateString()}
 						</p>
 					</div>
-					<p>
-						<PlaceIcon className={s.travel__icon} />
-						São Paulo - SP
-						{/* {travel.location} - <span>{travel.state}</span> */}
+					<p className={s.travel__container_location}>
+						<PlaceIcon sx={{ color: "#f65261" }} className={s.travel__icon} />
+						{travel.location} - {travel.state}
 					</p>
 				</div>
 			</div>
