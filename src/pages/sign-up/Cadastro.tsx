@@ -1,7 +1,7 @@
 import { useState } from "react";
 import s from "./Cadastro.module.css";
 import { createUser } from "../../services/UserService";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Cadastro = () => {
 	const [username, setUsername] = useState("");
@@ -16,7 +16,7 @@ export const Cadastro = () => {
 		try {
 			await createUser(username, password);
 			setSuccess("Usuário criado com sucesso.");
-			setUsername(""); // Limpar campos
+			setUsername("");
 			setPassword("");
 			navigate("/login");
 		} catch (err) {
@@ -63,7 +63,7 @@ export const Cadastro = () => {
 						Cadastrar
 					</button>
 					<p className={s.cadastro__form__span}>
-						Já possui uma conta? <a href="/login">Faça login</a>
+						Já possui uma conta? <Link to="/login">Faça login</Link>
 					</p>
 				</form>
 			</div>

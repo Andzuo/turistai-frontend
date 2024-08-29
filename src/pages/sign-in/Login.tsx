@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Importar o hook de navegação
+import { Link, useNavigate } from "react-router-dom"; // Importar o hook de navegação
 import s from "./Login.module.css";
 import { login } from "../../services/LoginService";
 
@@ -66,7 +66,7 @@ export const Login = () => {
 						Logar
 					</button>
 					<p className={s.login__form__span}>
-						Ainda não tem conta? <a href="/cadastro">Cadastre-se</a>
+						Ainda não tem conta? <Link to="/cadastro">Cadastre-se</Link>
 					</p>
 				</form>
 			</div>
