@@ -39,7 +39,6 @@ export const Cadastro = () => {
 							className={s.cadastro__form__input}
 							placeholder="Digite seu nome"
 							value={username}
-							onChange={(e) => setUsername(e.target.value)}
 							required
 						/>
 					</div>
@@ -53,7 +52,6 @@ export const Cadastro = () => {
 							className={s.cadastro__form__input}
 							placeholder="Digite sua senha"
 							value={password}
-							onChange={(e) => setPassword(e.target.value)}
 							required
 						/>
 					</div>
