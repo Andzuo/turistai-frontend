@@ -1,0 +1,71 @@
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+}
+
+.modal__Content {
+	background-color: white;
+	padding: 2rem;
+	border-radius: 10px;
+	max-width: 500px;
+	width: 100%;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	position: relative;
+}
+
+.modal__content_closeButton {
+	position: absolute;
+	top: 20px;
+	right: 25px;
+  color: #e04353;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.modal__content__image {
+	width: 100%;
+	height: auto;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+
+.modal__content__title {
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.modal__content__date {
+	font-size: 1rem;
+	color: #555;
+	margin-bottom: 20px;
+}
+
+.modal__content_description {
+	font-size: 1rem;
+	color: #333;
+  padding-bottom: 5rem;
+}
+
+.modal__actions__button {
+  width: 100%;
+  font-weight: 500;
+  background-color: #f65261 !important;
+  color: #fff !important;
+  margin-top: 3rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  outline: none;
+}

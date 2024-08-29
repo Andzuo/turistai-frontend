@@ -82,7 +82,7 @@ export const fetchImage = async (imageName: string): Promise<Blob> => {
 	}
 };
 
-export const removeTravel = async (id: string) => {
+export const removeTravel = async (id: number) => {
 	try {
 		const tokenObj = localStorage.getItem("acessToken");
 		if (!tokenObj) {
