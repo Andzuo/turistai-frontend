@@ -17,7 +17,10 @@ export const TravelsList = () => {
 		const fetchTravels = async () => {
 			try {
 				const fetchedTravels = await getAllTravels();
-				setTravels(fetchedTravels);
+				const nextTravel = fetchedTravels.sort(
+					(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+				);
+				setTravels(nextTravel);
 			} catch (error) {
 				console.error("Error fetching travels:", error);
 			} finally {

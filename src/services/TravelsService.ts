@@ -62,7 +62,6 @@ export const createTravel = async (
 };
 export const fetchImage = async (imageName: string): Promise<Blob> => {
 	try {
-		// Obter o token do localStorage
 		const tokenObj = localStorage.getItem("acessToken");
 		if (!tokenObj) {
 			throw new Error("No access token found");
