@@ -1,9 +1,9 @@
 import s from "./SelectTravelModal.module.css";
-import CloseIcon from "@mui/icons-material/Close";
 import type { TravelData } from "../../interface/Travelprops";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { useState } from "react";
 import { RoadMapTravelModal } from "../RoadMapTravelModal/RoadMapTravelModal";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 interface SelectTravelModalProps {
 	travel: TravelData;
@@ -28,12 +28,15 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 		<div className={s.modal}>
 			<div className={s.modal__Content}>
 				<button
-					type="button"
+					type="submit"
 					className={s.modal__content_closeButton}
-					onClick={onClose}
+					onClick={() => travel.id !== undefined && onRemove(travel.id)}
 				>
-					<CloseIcon />
+					<DeleteIcon />
 				</button>
+				<div>
+					<img src={travel.image} alt={travel.title} />
+				</div>
 				<h2 className={s.modal__content__title}>{travel.title}</h2>
 				<p className={s.modal__content__date}>
 					{new Date(travel.date).toLocaleDateString()}
@@ -53,11 +56,11 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 				</div>
 				<RoadMapTravelModal open={open} onClose={handleClose} />
 				<button
-					type="submit"
+					type="button"
 					className={s.modal__actions__button}
-					onClick={() => travel.id !== undefined && onRemove(travel.id)}
+					onClick={onClose}
 				>
-					Remover Viagem
+					Fechar Janela
 				</button>
 			</div>
 		</div>
