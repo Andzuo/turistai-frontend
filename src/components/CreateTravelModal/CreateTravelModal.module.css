@@ -81,13 +81,13 @@
 .img__container {
   position: relative;
   width: 100%;
-  max-width: 300px; /* Ajuste conforme necessário */
+  max-width: 300px;
   margin: 20px 0;
 }
 
 .img__label {
   display: inline-block;
-  background-color: #f65261; /* Cor do fundo do botão */
+  background-color: #f65261;
   color: white;
   padding: 10px 20px;
   border-radius: 4px;
@@ -101,12 +101,12 @@
 }
 
 .img__label:hover {
-  background-color: #e04353; /* Cor do fundo do botão ao passar o mouse */
+  background-color: #e04353;
 }
 
 .img {
   position: absolute;
-  left: -9999px; /* Esconde o input real */
+  left: -9999px;
 }
 
 .img__filename {
