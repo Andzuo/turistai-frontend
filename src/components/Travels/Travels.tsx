@@ -1,6 +1,6 @@
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { useState, useEffect } from "react";
-import { TravelModal } from "../CreateTravelModal/CreateTravelModal";
+import { CreateTavelModal } from "../CreateTravelModal/CreateTravelModal";
 import { useNavigate } from "react-router-dom";
 import { getLocationName } from "../../services/GeolocationService";
 import { TravelsList } from "../TravelsList/TravelsList";
@@ -70,7 +70,7 @@ export const Travels = () => {
 				</div>
 				<TravelsList />
 			</div>
-			<TravelModal open={open} onClose={handleClose} />
+			<CreateTavelModal open={open} onClose={handleClose} />
 		</div>
 	);
 };
