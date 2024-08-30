@@ -69,3 +69,15 @@
   transition: background-color 0.3s ease;
   outline: none;
 }
+.modal__content_addButton{
+	display: flex;
+  font-weight: 500;
+  background-color: #f65261 !important;
+  color: #fff !important;
+  border-radius: 5px;
+	padding: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
