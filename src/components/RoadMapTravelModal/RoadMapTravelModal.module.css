@@ -1,0 +1,158 @@
+.roadMap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.roadMap__content {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.roadMap__content__title {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.roadMap__inputs {
+  margin-bottom: 20px;
+}
+
+.roadMap__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal__actions__button {
+  width: 100%;
+  font-weight: 500;
+  background-color: #f65261 !important;
+  color: #fff !important;
+  margin-top: 3rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
+.actionButton:hover {
+  background-color: #a6323c;
+}
+.roadMap__inputs{
+  display: flex;
+  width: 100%;
+  flex-direction: column  ;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #fff;
+}
+.roadMap__inputs__input {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.6rem;
+  outline: none;
+  border-radius: 10px;
+  border: 1px solid #1d1d1d;
+}
+.roadMap__inputs__checkbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.roadMap__inputs__checkbox__input {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #1d1d1d;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.roadMap__inputs__checkbox__input:checked {
+  background-color: #f65261;
+  border-color: #f65261;
+}
+
+.roadMap__inputs__checkbox__input:checked::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.roadMap__label {
+  font-size: 16px;
+  color: #333;
+}
+
+
+.img__container {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin: 20px 0;
+}
+
+.img__label {
+  display: inline-block;
+  background-color: #f65261;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img__label:hover {
+  background-color: #e04353;
+}
+
+.img {
+  display: none;
+}
+
+.img__filename {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
