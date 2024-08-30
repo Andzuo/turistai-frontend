@@ -16,7 +16,7 @@ export const TravelsList = () => {
 	useEffect(() => {
 		const fetchTravels = async () => {
 			try {
-				const fetchedTravels = await getAllTravels();
+				const fetchedTravels: TravelData[] = await getAllTravels();
 				const nextTravel = fetchedTravels.sort(
 					(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
 				);

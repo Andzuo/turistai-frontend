@@ -1,6 +1,9 @@
 import s from "./SelectTravelModal.module.css";
 import CloseIcon from "@mui/icons-material/Close";
 import type { TravelData } from "../../interface/Travelprops";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { useState } from "react";
+import { RoadMapTravelModal } from "../RoadMapTravelModal/RoadMapTravelModal";
 
 interface SelectTravelModalProps {
 	travel: TravelData;
@@ -13,6 +16,14 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 	onClose,
 	onRemove,
 }) => {
+	const [open, setOpen] = useState(false);
+
+	const handleClickOpen = () => {
+		setOpen(true);
+	};
+	const handleClose = () => {
+		setOpen(false);
+	};
 	return (
 		<div className={s.modal}>
 			<div className={s.modal__Content}>
@@ -29,8 +40,18 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 				</p>
 				<p className={s.modal__content_description}>{travel.description}</p>
 				<div>
-					<h2>Lugares Recomendados:</h2>
+					<h2>
+						Adicionar roteiro da viagem:
+						<button
+							className={s.modal__content_addButton}
+							type="submit"
+							onClick={handleClickOpen}
+						>
+							<AddCircleIcon />
+						</button>
+					</h2>
 				</div>
+				<RoadMapTravelModal open={open} onClose={handleClose} />
 				<button
 					type="submit"
 					className={s.modal__actions__button}
