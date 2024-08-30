@@ -1,9 +1,10 @@
 import s from "./SelectTravelModal.module.css";
 import type { TravelData } from "../../interface/Travelprops";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { RoadMapTravelModal } from "../RoadMapTravelModal/RoadMapTravelModal";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { fetchImage } from "../../services/TravelsService";
 
 interface SelectTravelModalProps {
 	travel: TravelData;
@@ -17,6 +18,29 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 	onRemove,
 }) => {
 	const [open, setOpen] = useState(false);
+	const [imageUrl, setImageUrl] = useState<string | null>(null);
+
+	useEffect(() => {
+		const loadImage = async () => {
+			if (travel.image) {
+				try {
+					const imageBlob = await fetchImage(travel.image);
+					const imageObjectURL = URL.createObjectURL(imageBlob);
+					setImageUrl(imageObjectURL);
+				} catch (error) {
+					console.error("Erro ao carregar imagem:", error);
+				}
+			}
+		};
+
+		loadImage();
+
+		return () => {
+			if (imageUrl) {
+				URL.revokeObjectURL(imageUrl);
+			}
+		};
+	}, [travel.image, imageUrl]);
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -24,18 +48,23 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 	const handleClose = () => {
 		setOpen(false);
 	};
+
 	return (
 		<div className={s.modal}>
 			<div className={s.modal__Content}>
 				<button
 					type="submit"
-					className={s.modal__content_closeButton}
+					className={s.modal__content_removeTravel}
 					onClick={() => travel.id !== undefined && onRemove(travel.id)}
 				>
 					<DeleteIcon />
 				</button>
-				<div>
-					<img src={travel.image} alt={travel.title} />
+				<div className={s.image__container}>
+					{imageUrl ? (
+						<img src={imageUrl} alt={travel.title} />
+					) : (
+						<div className={s.imagePlaceholder}>Imagem não disponível</div>
+					)}
 				</div>
 				<h2 className={s.modal__content__title}>{travel.title}</h2>
 				<p className={s.modal__content__date}>
