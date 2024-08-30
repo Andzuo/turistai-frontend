@@ -45,6 +45,9 @@ export const TravelsList = () => {
 			setTravels((prevTravels) => prevTravels.filter((travel) => travel.id));
 			toast.success("Viagem removida com sucesso!");
 			handleCloseModal();
+			setTimeout(() => {
+				window.location.reload();
+			}, 2000);
 		} catch (error) {
 			toast.error("Erro ao remover a viagem!");
 		}
