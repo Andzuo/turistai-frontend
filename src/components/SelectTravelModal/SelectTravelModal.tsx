@@ -83,7 +83,11 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 						</button>
 					</h2>
 				</div>
-				<RoadMapTravelModal open={open} onClose={handleClose} />
+				<RoadMapTravelModal
+					open={open}
+					onClose={handleClose}
+					travelId={travel.id?.toString() ?? ""}
+				/>
 				<button
 					type="button"
 					className={s.modal__actions__button}
