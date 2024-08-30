@@ -13,7 +13,7 @@
 
 .modal__Content {
 	background-color: white;
-	padding: 2rem;
+	padding: 3rem;
 	border-radius: 10px;
 	max-width: 500px;
 	width: 100%;
@@ -21,7 +21,7 @@
 	position: relative;
 }
 
-.modal__content_closeButton {
+.modal__content_removeTravel {
 	position: absolute;
 	top: 20px;
 	right: 25px;
@@ -80,4 +80,15 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   outline: none;
+}
+
+.image__container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.image__container img {
+	width: 100%;
+	height: auto;
+	border-radius: 10px;
 }
