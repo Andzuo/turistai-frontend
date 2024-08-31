@@ -1,0 +1,29 @@
+.roadMap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 0.2rem;
+}
+
+.roadMap__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.roadMap__container__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.roadMap__container__checkbox__visited__input {
+  width: 0.8rem;
+  color: #f65261;
+  border: 2px solid #f65261;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
+
