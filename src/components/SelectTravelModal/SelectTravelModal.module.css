@@ -19,6 +19,8 @@
 	width: 100%;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	position: relative;
+	height: 90vh;
+	overflow-y: auto;
 }
 
 .modal__content_removeTravel {
@@ -30,6 +32,11 @@
 	border: none;
 	cursor: pointer;
 }
+.modal__list {
+	max-height: 300px; /* Define a altura máxima para a lista */
+	overflow-y: auto; /* Adiciona rolagem vertical */
+}
+
 
 .modal__content__image {
 	width: 100%;

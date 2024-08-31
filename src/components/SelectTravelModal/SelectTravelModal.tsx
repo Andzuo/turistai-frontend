@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { RoadMapTravelModal } from "../RoadMapTravelModal/RoadMapTravelModal";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { fetchImage } from "../../services/TravelsService";
+import { RoadMapList } from "../RoadMapList/RoadMapList";
 
 interface SelectTravelModalProps {
 	travel: TravelData;
@@ -45,6 +46,7 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
+
 	const handleClose = () => {
 		setOpen(false);
 	};
@@ -82,6 +84,7 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 							<AddCircleIcon />
 						</button>
 					</h2>
+					<RoadMapList travelId={travel.id as number} />
 				</div>
 				<RoadMapTravelModal
 					open={open}
