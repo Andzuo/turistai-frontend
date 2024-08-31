@@ -73,7 +73,7 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 					{new Date(travel.date).toLocaleDateString()}
 				</p>
 				<p className={s.modal__content_description}>{travel.description}</p>
-				<div>
+				<div className={s.modal__content__list}>
 					<h2>
 						Adicionar roteiro da viagem:
 						<button

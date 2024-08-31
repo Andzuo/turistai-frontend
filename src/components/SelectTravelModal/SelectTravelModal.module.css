@@ -32,11 +32,6 @@
 	border: none;
 	cursor: pointer;
 }
-.modal__list {
-	max-height: 300px; /* Define a altura máxima para a lista */
-	overflow-y: auto; /* Adiciona rolagem vertical */
-}
-
 
 .modal__content__image {
 	width: 100%;
@@ -87,6 +82,7 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   outline: none;
+	margin: 1.2rem 0;
 }
 
 .image__container {
