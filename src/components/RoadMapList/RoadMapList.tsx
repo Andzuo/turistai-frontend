@@ -4,7 +4,7 @@ import {
 	type RoadMapData,
 } from "../../services/RoadMapService";
 import { Skeleton } from "@mui/material";
-import RoadMapComponent from "../RoadMapComponent/RoadMapComponent";
+import { RoadMapComponent } from "../RoadMapComponent/RoadMapComponent";
 import s from "./RoadMapList.module.css";
 
 interface RoadMapListProps {
@@ -34,7 +34,7 @@ export const RoadMapList: React.FC<RoadMapListProps> = ({ travelId }) => {
 		<div>
 			{loading ? (
 				<div className={s.roadmaps__skeleton}>
-					<Skeleton variant="rounded" width={310} height={210} />
+					<Skeleton variant="rounded" width={350} height={100} />
 				</div>
 			) : (
 				roadMaps.map((roadMap) => (

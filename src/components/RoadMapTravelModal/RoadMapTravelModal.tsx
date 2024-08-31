@@ -1,6 +1,6 @@
 import type React from "react";
 import s from "./RoadMapTravelModal.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { createRoadMap } from "../../services/RoadMapService";
 

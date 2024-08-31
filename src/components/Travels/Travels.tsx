@@ -39,7 +39,6 @@ export const Travels = () => {
 
 	const handleClickOpen = () => {
 		const token = localStorage.getItem("acessToken");
-		console.log(token);
 		if (token === null) {
 			navigate("/login");
 		} else {
