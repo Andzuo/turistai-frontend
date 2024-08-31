@@ -1,7 +1,6 @@
 .roadMap {
   width: 100%;
   display: flex;
-  flex-direction: column;
   box-sizing: border-box;
   padding: 0.2rem;
 }
@@ -14,7 +13,6 @@
 
 .roadMap__container__checkbox {
   display: flex;
-  align-items: center;
   gap: 0.5rem;
 }
 
@@ -27,3 +25,16 @@
   cursor: pointer;
 }
 
+.roadMap__content__image {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  margin: 0.5rem 0;
+}
+
+.roadMap_image{
+  width: 6rem;
+  height: auto;
+  min-width: 6rem;
+  border-radius: 10px;
+}

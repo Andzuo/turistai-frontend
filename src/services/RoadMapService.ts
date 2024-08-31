@@ -72,6 +72,27 @@ export const getAllRoadMaps = async (
 	}
 };
 
+export const fetchRoadMapImage = async (imageName: string): Promise<Blob> => {
+	try {
+		const tokenObj = localStorage.getItem("acessToken");
+		if (!tokenObj) {
+			throw new Error("No access token found");
+		}
+		const token = JSON.parse(tokenObj).token;
+
+		const response = await axios.get(`${API_URL}/image/${imageName}`, {
+			responseType: "blob",
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		return response.data;
+	} catch (error) {
+		throw new Error(`Erro ao buscar imagem: ${error}`);
+	}
+};
+
 export const addComment = async (roadMapId: string, comment: string) => {
 	if (!roadMapId) {
 		throw new Error("RoadMap ID is required");
