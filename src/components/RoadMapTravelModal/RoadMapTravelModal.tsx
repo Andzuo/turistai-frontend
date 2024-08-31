@@ -25,11 +25,6 @@ export const RoadMapTravelModal: React.FC<RoadMapTravelModalProps> = ({
 		addres: "",
 	});
 
-	useEffect(() => {
-		console.log("Modal Opened:", open);
-		console.log("Received Travel ID:", travelId);
-	}, [open, travelId]);
-
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { id, value, files } = event.target;
 
@@ -57,7 +52,6 @@ export const RoadMapTravelModal: React.FC<RoadMapTravelModalProps> = ({
 	};
 
 	const handleSave = async () => {
-		console.log("handleSave called");
 		if (!validateFields()) {
 			toast.error("Por favor, preencha o título corretamente.");
 			return;
@@ -68,20 +62,14 @@ export const RoadMapTravelModal: React.FC<RoadMapTravelModalProps> = ({
 			addres: data.addres,
 		};
 
-		console.log("Travel ID:", travelId);
-		console.log("RoadMap Data:", roadMapData);
-		console.log("File:", data.file);
-
 		try {
-			const response = await createRoadMap(
+			await createRoadMap(
 				travelId?.toString() || "",
 				roadMapData,
 				data.file || undefined,
 			);
-			console.log("API Response:", response);
 			toast.success("Roteiro criado com sucesso!");
 		} catch (error) {
-			console.error("Erro ao criar roteiro:", error);
 			toast.error("Erro ao criar roteiro. Tente novamente mais tarde.");
 		}
 	};
