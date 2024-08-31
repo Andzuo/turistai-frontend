@@ -52,16 +52,12 @@ export const getAllRoadMaps = async (
 		throw new Error("Travel ID is required");
 	}
 
-	console.log("Fetching roadmaps for travelId:", travelId);
-
 	const tokenObj = localStorage.getItem("acessToken");
 	if (!tokenObj) {
 		throw new Error("No access token found");
 	}
 
 	const token = JSON.parse(tokenObj).token;
-
-	console.log("Using token:", token);
 
 	try {
 		const response = await axios.get(`${API_URL}/${travelId}`, {
@@ -70,12 +66,9 @@ export const getAllRoadMaps = async (
 			},
 		});
 
-		console.log("API response:", response.data);
-
 		return response.data;
 	} catch (error) {
-		console.error("Error fetching roadmaps:", error);
-		throw error;
+		throw new Error("Error fetching roadmaps");
 	}
 };
 
