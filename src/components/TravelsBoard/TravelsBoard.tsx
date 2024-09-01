@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { getLocationName } from "../../services/GeolocationService";
 import { TravelsList } from "../TravelsList/TravelsList";
 
-import s from "./Travels.module.css";
+import s from "./TravelsBoard.module.css";
 
-export const Travels = () => {
+export const TravelsBoard = () => {
 	const [open, setOpen] = useState(false);
 	const [userLocation, setUserLocation] = useState<string>(
 		"Carregando localização...",
