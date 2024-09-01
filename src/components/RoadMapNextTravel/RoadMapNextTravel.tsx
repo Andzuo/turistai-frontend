@@ -11,7 +11,7 @@ export const RoadMapNextTravel: React.FC<RoadMapNextTravelProps> = ({
 }) => {
 	return (
 		<div className={s.roadMapNextTravel}>
-			<RoadMapList travelId={travelId} />
+			<RoadMapList travelId={travelId} className={s.roadMapList} />
 		</div>
 	);
 };
