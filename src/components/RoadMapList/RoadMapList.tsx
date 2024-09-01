@@ -36,11 +36,11 @@ export const RoadMapList: React.FC<RoadMapListProps> = ({ travelId }) => {
 		try {
 			await removeRoad(id);
 			setRoadMaps((prevRoadMaps) =>
-				prevRoadMaps.filter((roadMap) => roadMap.id),
+				prevRoadMaps.filter((roadMap) => roadMap.id !== id),
 			);
-			toast.success("Viagem removida com sucesso!");
+			toast.success("Roteiro removido com sucesso!");
 		} catch (error) {
-			toast.error("Erro ao remover a viagem!");
+			toast.error("Erro ao remover o roteiro!");
 		}
 	};
 
