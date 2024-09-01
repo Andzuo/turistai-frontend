@@ -6,6 +6,13 @@
 
 **Turistai** é um aplicativo desenvolvido com Spring e React que permite aos usuários criar e gerenciar viagens, criar roteiros das suas viagens, marcar os lugares que você pode visitar. O aplicativo utiliza MaterialUI como auxiliar na criação de coponenents, PostgresSQL como banco de dados e oferece visualização das suas viagens em formato de agenda.
 
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+
 ## Funcionalidades
 
 - **Criação de Viagens**: Permite ao usuário criar uma nova viagem e visualizá-la em formato de agenda.
@@ -102,11 +109,7 @@ Se você deseja contribuir para o projeto, por favor siga estas etapas:
 
 - edit de viagens 
 - atualização da lista ao criar novos components no front-end 
-- adicionar placesAPI para facilitar o cadastro de lugares
-
-## Licença
-
-Este projeto é licenciado sob a MIT License - veja o [LICENSE](LICENSE) para mais detalhes.
+- adicionar placesAPI para facilitar o cadastro de lugares.
 
 ## Contato
 
