@@ -46,7 +46,7 @@ export const RoadMapTravelModal: React.FC<RoadMapTravelModalProps> = ({
 			newErrors.title = "Título é obrigatório";
 			isValid = false;
 		}
-		if (data.title.length > 30) {
+		if (data.title.length > 100) {
 			newErrors.title = "Título deve ter no máximo 30 caracteres";
 			isValid = false;
 		}
@@ -114,6 +114,9 @@ export const RoadMapTravelModal: React.FC<RoadMapTravelModalProps> = ({
 							className={s.img}
 							onChange={handleChange}
 						/>
+						{data.file && (
+							<span className={s.img__filename}>{data.file.name}</span>
+						)}
 					</div>
 				</div>
 				<div className={s.roadMap__actions}>
