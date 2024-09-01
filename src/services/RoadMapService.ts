@@ -93,31 +93,31 @@ export const fetchRoadMapImage = async (imageName: string): Promise<Blob> => {
 	}
 };
 
-export const addComment = async (roadMapId: string, comment: string) => {
-	if (!roadMapId) {
-		throw new Error("RoadMap ID is required");
-	}
+// export const addComment = async (roadMapId: string, comment: string) => {
+// 	if (!roadMapId) {
+// 		throw new Error("RoadMap ID is required");
+// 	}
 
-	const tokenObj = localStorage.getItem("acessToken");
-	if (!tokenObj) {
-		throw new Error("No access token found");
-	}
+// 	const tokenObj = localStorage.getItem("acessToken");
+// 	if (!tokenObj) {
+// 		throw new Error("No access token found");
+// 	}
 
-	const token = JSON.parse(tokenObj).token;
+// 	const token = JSON.parse(tokenObj).token;
 
-	const response = await axios.post(
-		`${API_URL}/${roadMapId}/comment`,
-		{ comment },
-		{
-			headers: {
-				Authorization: `Bearer ${token}`,
-				"Content-Type": "application/json",
-			},
-		},
-	);
+// 	const response = await axios.post(
+// 		`${API_URL}/${roadMapId}/comment`,
+// 		{ comment },
+// 		{
+// 			headers: {
+// 				Authorization: `Bearer ${token}`,
+// 				"Content-Type": "application/json",
+// 			},
+// 		},
+// 	);
 
-	return response.data;
-};
+// 	return response.data;
+// };
 
 export const isVisited = async (roadMapId: string) => {
 	if (!roadMapId) {
@@ -140,6 +140,23 @@ export const isVisited = async (roadMapId: string) => {
 			},
 		},
 	);
+
+	return response.data;
+};
+
+export const removeRoad = async (roadMapId: number) => {
+	const tokenObj = localStorage.getItem("acessToken");
+	if (!tokenObj) {
+		throw new Error("No access token found");
+	}
+
+	const token = JSON.parse(tokenObj).token;
+
+	const response = await axios.delete(`${API_URL}/${roadMapId}`, {
+		headers: {
+			Authorization: `Bearer ${token}`,
+		},
+	});
 
 	return response.data;
 };
