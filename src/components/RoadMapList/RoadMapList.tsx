@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import {
 	getAllRoadMaps,
+	removeRoad,
 	type RoadMapData,
 } from "../../services/RoadMapService";
 import { Skeleton } from "@mui/material";
 import { RoadMapComponent } from "../RoadMapComponent/RoadMapComponent";
 import s from "./RoadMapList.module.css";
+import { toast } from "react-toastify";
 
 interface RoadMapListProps {
 	travelId: number;
@@ -30,6 +32,18 @@ export const RoadMapList: React.FC<RoadMapListProps> = ({ travelId }) => {
 		fetchRoadMaps();
 	}, [travelId]);
 
+	const handleRemoveRoadMap = async (id: number) => {
+		try {
+			await removeRoad(id);
+			setRoadMaps((prevRoadMaps) =>
+				prevRoadMaps.filter((roadMap) => roadMap.id),
+			);
+			toast.success("Viagem removida com sucesso!");
+		} catch (error) {
+			toast.error("Erro ao remover a viagem!");
+		}
+	};
+
 	return (
 		<div>
 			{loading ? (
@@ -38,7 +52,11 @@ export const RoadMapList: React.FC<RoadMapListProps> = ({ travelId }) => {
 				</div>
 			) : (
 				roadMaps.map((roadMap) => (
-					<RoadMapComponent key={roadMap.id} roadMap={roadMap} />
+					<RoadMapComponent
+						key={roadMap.id}
+						roadMap={roadMap}
+						onRemove={handleRemoveRoadMap}
+					/>
 				))
 			)}
 		</div>
