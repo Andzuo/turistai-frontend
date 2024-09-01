@@ -13,6 +13,7 @@
 .roadMap__container__content {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   margin-left: 0.5rem;
   max-width: 19rem;
@@ -36,7 +37,7 @@
   width: 1.2rem;
   height: 1.2rem;
   background-color: white;
-  border: 2px solid #f65261;
+  border: 1px solid #1d1d1d;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
@@ -45,8 +46,8 @@
 }
 
 .roadMap__container__checkbox__visited__input:checked {
-  background-color: #f65261;
-  border-color: #f65261;
+  background-color: #1d1d1d;
+  border-color: #1d1d1d;
 }
 
 .roadMap__container__checkbox__visited__input:checked::after {

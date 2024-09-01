@@ -4,8 +4,10 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
 export const Calendar = () => {
 	return (
-		<LocalizationProvider dateAdapter={AdapterDayjs}>
-			<DateCalendar />
-		</LocalizationProvider>
+		<div>
+			<LocalizationProvider dateAdapter={AdapterDayjs}>
+				<DateCalendar />
+			</LocalizationProvider>
+		</div>
 	);
 };

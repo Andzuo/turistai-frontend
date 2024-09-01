@@ -42,6 +42,7 @@
 .roadMap__actions {
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
 }
 
 .modal__actions__button {

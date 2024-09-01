@@ -2,6 +2,7 @@ import { useState } from "react";
 import s from "./Cadastro.module.css";
 import { createUser } from "../../services/UserService";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const Cadastro = () => {
 	const [username, setUsername] = useState("");
@@ -16,8 +17,7 @@ export const Cadastro = () => {
 		try {
 			await createUser(username, password);
 			setSuccess("Usuário criado com sucesso.");
-			setUsername("");
-			setPassword("");
+			toast.success("Usuário criado com sucesso.");
 			navigate("/login");
 		} catch (err) {
 			setError("Falha ao criar usuário. Tente novamente.");
@@ -39,6 +39,7 @@ export const Cadastro = () => {
 							className={s.cadastro__form__input}
 							placeholder="Digite seu nome"
 							value={username}
+							onChange={(e) => setUsername(e.target.value)}
 							required
 						/>
 					</div>
@@ -52,6 +53,7 @@ export const Cadastro = () => {
 							className={s.cadastro__form__input}
 							placeholder="Digite sua senha"
 							value={password}
+							onChange={(e) => setPassword(e.target.value)}
 							required
 						/>
 					</div>

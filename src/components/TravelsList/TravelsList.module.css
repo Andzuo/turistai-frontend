@@ -1,6 +1,6 @@
 .travels__skeleton {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
   gap: 3rem;
   justify-content: space-between;
   width: 100%;
@@ -8,18 +8,29 @@
 
 .travels__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
   justify-content: space-between;
   width: 100%;
+  grid-auto-rows: 300px; 
+  max-height: 650px;
+  overflow: auto;
+  height: 100%;
 }
 
 @media (max-width: 750px) {
   .travels__list {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
     justify-content: center;
+    align-items: center; 
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    grid-auto-rows: 300px; 
+    gap: 1.5rem;
+    padding: 0 0 0 3rem;
+  }
+  
+  .travel-item {
+    min-height: 300px; 
+    width: 100%;
   }
 }

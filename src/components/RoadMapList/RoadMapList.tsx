@@ -11,9 +11,13 @@ import { toast } from "react-toastify";
 
 interface RoadMapListProps {
 	travelId: number;
+	className?: string;
 }
 
-export const RoadMapList: React.FC<RoadMapListProps> = ({ travelId }) => {
+export const RoadMapList: React.FC<RoadMapListProps> = ({
+	travelId,
+	className,
+}) => {
 	const [loading, setLoading] = useState(true);
 	const [roadMaps, setRoadMaps] = useState<RoadMapData[]>([]);
 
@@ -36,16 +40,16 @@ export const RoadMapList: React.FC<RoadMapListProps> = ({ travelId }) => {
 		try {
 			await removeRoad(id);
 			setRoadMaps((prevRoadMaps) =>
-				prevRoadMaps.filter((roadMap) => roadMap.id),
+				prevRoadMaps.filter((roadMap) => roadMap.id !== id),
 			);
-			toast.success("Viagem removida com sucesso!");
+			toast.success("Roteiro removido com sucesso!");
 		} catch (error) {
-			toast.error("Erro ao remover a viagem!");
+			toast.error("Erro ao remover o roteiro!");
 		}
 	};
 
 	return (
-		<div>
+		<div className={`${s.roadMapList} ${className}`}>
 			{loading ? (
 				<div className={s.roadmaps__skeleton}>
 					<Skeleton variant="rounded" width={350} height={100} />

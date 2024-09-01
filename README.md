@@ -1,50 +1,117 @@
-# React + TypeScript + Vite
+# Turistai
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Projeto](./src/components/assets/print%201.PNG)
 
-Currently, two official plugins are available:
+## Descrição
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Turistai** é um aplicativo desenvolvido com Spring e React que permite aos usuários criar e gerenciar viagens, criar roteiros das suas viagens, marcar os lugares que você pode visitar. O aplicativo utiliza MaterialUI como auxiliar na criação de coponenents, PostgresSQL como banco de dados e oferece visualização das suas viagens em formato de agenda.
 
-## Expanding the ESLint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Criação de Viagens**: Permite ao usuário criar uma nova viagem e visualizá-la em formato de agenda.
+- **Criação de Roteiros**: Adicione roteiros detalhados dentro de cada viagem.
+- **Gerenciamento de Roadmaps**: Adicione imagens, títulos e endereço dos lugares no para seu roadmap.
+- **Upload de Imagens**: Possibilita o upload de imagens através de um endpoint dedicado.
+- **Visualização**: Exibe uma lista de viagens com opções de remoção e visualização detalhada.
+- **Autenticação**: Utiliza JWT para proteger endpoints e autenticar usuários.
 
-- Configure the top-level `parserOptions` property like this:
+## Tecnologias
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Backend**: Spring Framework, JWT, Docker, PostgreSQL
+- **Frontend**: React, Axios, Material-UI, react-router-dom
+- **Armazenamento de Arquivos**: Configuração personalizada para upload e armazenamento de imagens.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Estrutura do Projeto
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Backend
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **Travel**: Classe principal para criar e gerenciar viagens.
+- **FileStorageProperties**: Configura o diretório de upload de arquivos.
+- **TokenController**: controller para os endPoints de autenticação e encodificador do código de acesso
+- **travelController**: controller que gerencia todos os endpoints que envolvem a classe travel, 
+- **UserController**: Controller que gerencia o cadastro de novos usuarios
+- **TravelRoadMapController**: controller que gerencia todos os endpoints que envolvem a classe TravelRoadMap
+- **Banco de Dados**: PostgreSQL para armazenamento de dados.
+- **Docker**: O backend está configurado para rodar em contêineres Docker para facilidade no versionamento e manutenção.
+
+### Frontend
+
+- **RoadMapList**: Componente para listar e visualizar roadmaps.
+- **SelectTravelModal**: Modal para exibir detalhes da viagem e permitir remoção.
+- **RoadMapTravelModal**: Modal para gerenciamento de roadmaps.
+- **CreateTravelModal**: Modal para criar novas viagens.
+- **TravelsList**: Componente para listar viagens em um grid de 3 por linha.
+
+## Instalação
+
+### Backend
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/andzuo/turistai-backend.git
+   ```
+
+3. Navegue até o diretório do projeto:
+   ```bash
+   cd turistai-backend
+   ```
+
+4. Construa e execute os contêineres Docker:
+   ```bash
+   docker-compose up --build -d
+   ```
+
+### Frontend
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seuusuario/turistai-frontend.git
+   ```
+
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd turistai-frontend
+   ```
+
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+4. Execute o aplicativo:
+   ```bash
+   npm start
+   ```
+
+## Configuração
+
+- **Backend**: Configure o diretório de upload de arquivos em `application.properties` o padrão está programado para o diretorio /app/uploads dentro do container docker, porem, você pode alterar e a conexão com o banco de dados PostgreSQL.
+- **Frontend**: Configure a URL da API no arquivo de configuração do Axios.
+
+## Contribuição
+
+Se você deseja contribuir para o projeto, por favor siga estas etapas:
+
+1. Fork o repositório.
+2. Crie uma nova branch (`git checkout -b feature/nova-feature`).
+3. Faça suas alterações e commit (`git commit -am 'Adicionar nova feature'`).
+4. Push para a branch (`git push origin feature/nova-feature`).
+5. Abra um Pull Request.
+
+#### Possiveis melhorias
+
+- edit de viagens 
+- atualização da lista ao criar novos components no front-end 
+- adicionar placesAPI para facilitar o cadastro de lugares
+
+## Licença
+
+Este projeto é licenciado sob a MIT License - veja o [LICENSE](LICENSE) para mais detalhes.
+
+## Contato
+
+Para mais informações, entre em contato com [alucasm02@gmail.com](mailto:alucasm02@gmail.com).
+
+---
+
+Se precisar de mais ajustes ou adicionar algo, é só avisar!

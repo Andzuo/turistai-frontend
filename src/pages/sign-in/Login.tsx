@@ -18,7 +18,6 @@ export const Login = () => {
 
 			const accessTokenData = {
 				token: data.acessToken,
-				expiresIn: data.expiresIn,
 			};
 
 			localStorage.setItem("acessToken", JSON.stringify(accessTokenData));
