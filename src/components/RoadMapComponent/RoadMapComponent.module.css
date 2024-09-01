@@ -1,0 +1,82 @@
+.roadMap {
+  width: 100%;
+  display: flex;
+  
+  padding: 0 0 0.9rem 0 ;
+  overflow-x: hidden;
+}
+
+.roadMap__container {
+  display: flex;
+}
+
+.roadMap__container__content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 0.5rem;
+  max-width: 19rem;
+  flex-wrap: wrap;
+}
+
+.roadMap__container__title{
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-wrap: wrap;
+}
+
+.roadMap__container__checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.roadMap__container__checkbox__visited__input {
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  background-color: white;
+  border: 2px solid #f65261;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.roadMap__container__checkbox__visited__input:checked {
+  background-color: #f65261;
+  border-color: #f65261;
+}
+
+.roadMap__container__checkbox__visited__input:checked::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+
+
+.roadMap__content__image {
+  display: flex;
+  justify-content: center;
+  height: auto;
+}
+
+.roadMap_image{
+  width: 6rem;
+  border-radius: 10px;
+}
+
+.modal__content_removeTravel {
+  color: #e04353;
+	background: none;
+	border: none;
+	cursor: pointer;
+  margin: 0 0.5rem 0 0;
+}

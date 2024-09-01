@@ -14,7 +14,10 @@ interface TravelModalProps {
 	onClose: () => void;
 }
 
-export const TravelModal: React.FC<TravelModalProps> = ({ open, onClose }) => {
+export const CreateTavelModal: React.FC<TravelModalProps> = ({
+	open,
+	onClose,
+}) => {
 	const [data, setData] = useState({
 		title: "",
 		description: "",

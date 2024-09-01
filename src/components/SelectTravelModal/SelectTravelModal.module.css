@@ -13,15 +13,17 @@
 
 .modal__Content {
 	background-color: white;
-	padding: 2rem;
+	padding: 3rem;
 	border-radius: 10px;
 	max-width: 500px;
 	width: 100%;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	position: relative;
+	height: 90vh;
+	overflow-y: auto;
 }
 
-.modal__content_closeButton {
+.modal__content_removeTravel {
 	position: absolute;
 	top: 20px;
 	right: 25px;
@@ -80,4 +82,16 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   outline: none;
+	margin: 1.2rem 0;
+}
+
+.image__container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.image__container img {
+	width: 100%;
+	height: auto;
+	border-radius: 10px;
 }

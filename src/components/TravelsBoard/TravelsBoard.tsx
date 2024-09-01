@@ -1,13 +1,13 @@
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { useState, useEffect } from "react";
-import { TravelModal } from "../CreateTravelModal/CreateTravelModal";
+import { CreateTavelModal } from "../CreateTravelModal/CreateTravelModal";
 import { useNavigate } from "react-router-dom";
 import { getLocationName } from "../../services/GeolocationService";
 import { TravelsList } from "../TravelsList/TravelsList";
 
-import s from "./Travels.module.css";
+import s from "./TravelsBoard.module.css";
 
-export const Travels = () => {
+export const TravelsBoard = () => {
 	const [open, setOpen] = useState(false);
 	const [userLocation, setUserLocation] = useState<string>(
 		"Carregando localização...",
@@ -39,7 +39,6 @@ export const Travels = () => {
 
 	const handleClickOpen = () => {
 		const token = localStorage.getItem("acessToken");
-		console.log(token);
 		if (token === null) {
 			navigate("/login");
 		} else {
@@ -70,7 +69,7 @@ export const Travels = () => {
 				</div>
 				<TravelsList />
 			</div>
-			<TravelModal open={open} onClose={handleClose} />
+			<CreateTavelModal open={open} onClose={handleClose} />
 		</div>
 	);
 };

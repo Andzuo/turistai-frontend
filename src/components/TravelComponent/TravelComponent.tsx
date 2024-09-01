@@ -4,6 +4,7 @@ import s from "./TravelComponent.module.css";
 import { fetchImage } from "../../services/TravelsService";
 import PlaceIcon from "@mui/icons-material/Place";
 import ImagePlaceholderIcon from "@mui/icons-material/Image";
+
 interface TravelComponentProps {
 	travel: TravelData;
 }
@@ -12,11 +13,13 @@ const TravelComponent: React.FC<TravelComponentProps> = ({ travel }) => {
 	const [imageUrl, setImageUrl] = useState<string | null>(null);
 
 	useEffect(() => {
+		let imageObjectURL: string | null = null;
+
 		const loadImage = async () => {
 			if (travel.image) {
 				try {
 					const imageBlob = await fetchImage(travel.image);
-					const imageObjectURL = URL.createObjectURL(imageBlob);
+					imageObjectURL = URL.createObjectURL(imageBlob);
 					setImageUrl(imageObjectURL);
 				} catch (error) {
 					console.error("Erro ao carregar imagem:", error);
@@ -27,11 +30,11 @@ const TravelComponent: React.FC<TravelComponentProps> = ({ travel }) => {
 		loadImage();
 
 		return () => {
-			if (imageUrl) {
-				URL.revokeObjectURL(imageUrl);
+			if (imageObjectURL) {
+				URL.revokeObjectURL(imageObjectURL);
 			}
 		};
-	}, [travel.image, imageUrl]);
+	}, [travel.image]);
 
 	return (
 		<div className={s.travel}>

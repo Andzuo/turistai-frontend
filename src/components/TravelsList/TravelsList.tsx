@@ -16,7 +16,7 @@ export const TravelsList = () => {
 	useEffect(() => {
 		const fetchTravels = async () => {
 			try {
-				const fetchedTravels = await getAllTravels();
+				const fetchedTravels: TravelData[] = await getAllTravels();
 				const nextTravel = fetchedTravels.sort(
 					(a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
 				);
@@ -45,6 +45,9 @@ export const TravelsList = () => {
 			setTravels((prevTravels) => prevTravels.filter((travel) => travel.id));
 			toast.success("Viagem removida com sucesso!");
 			handleCloseModal();
+			setTimeout(() => {
+				window.location.reload();
+			}, 2000);
 		} catch (error) {
 			toast.error("Erro ao remover a viagem!");
 		}

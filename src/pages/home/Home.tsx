@@ -1,6 +1,6 @@
-import { Travels } from "../../components/Travels/Travels";
 import { Calendar } from "../../components/Calendar/Calendar";
 import { Navbar } from "../../components/Navbar/Navbar";
+import { TravelsBoard } from "../../components/TravelsBoard/TravelsBoard";
 
 import s from "./Home.module.css";
 
@@ -9,7 +9,7 @@ export const Home = () => {
 		<>
 			<Navbar />
 			<div className={s.home}>
-				<Travels />
+				<TravelsBoard />
 				<Calendar />
 			</div>
 		</>
