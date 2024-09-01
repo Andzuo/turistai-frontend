@@ -7,6 +7,7 @@ import { TravelsBoard } from "../../components/TravelsBoard/TravelsBoard";
 import s from "./Home.module.css";
 import type { TravelData } from "../../interface/Travelprops";
 import { getAllTravels } from "../../services/TravelsService";
+import { Footer } from "../../components/Footer/Footer";
 
 export const Home = () => {
 	const [nextTravel, setNextTravel] = useState<TravelData | null>(null);
@@ -31,11 +32,12 @@ export const Home = () => {
 			<Navbar />
 			<section className={s.home}>
 				<TravelsBoard />
-				<section>
+				<section className={s.home__section}>
 					<Calendar />
 					{nextTravel && <RoadMapNextTravel travelId={nextTravel.id || 0} />}
 				</section>
 			</section>
+			<Footer />
 		</>
 	);
 };
