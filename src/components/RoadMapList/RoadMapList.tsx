@@ -11,9 +11,13 @@ import { toast } from "react-toastify";
 
 interface RoadMapListProps {
 	travelId: number;
+	className?: string;
 }
 
-export const RoadMapList: React.FC<RoadMapListProps> = ({ travelId }) => {
+export const RoadMapList: React.FC<RoadMapListProps> = ({
+	travelId,
+	className,
+}) => {
 	const [loading, setLoading] = useState(true);
 	const [roadMaps, setRoadMaps] = useState<RoadMapData[]>([]);
 
@@ -45,7 +49,7 @@ export const RoadMapList: React.FC<RoadMapListProps> = ({ travelId }) => {
 	};
 
 	return (
-		<div>
+		<div className={`${s.roadMapList} ${className}`}>
 			{loading ? (
 				<div className={s.roadmaps__skeleton}>
 					<Skeleton variant="rounded" width={350} height={100} />
