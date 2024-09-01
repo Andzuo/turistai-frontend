@@ -46,14 +46,19 @@ export const RoadMapTravelModal: React.FC<RoadMapTravelModalProps> = ({
 			newErrors.title = "Título é obrigatório";
 			isValid = false;
 		}
+		if (data.title.length > 30) {
+			newErrors.title = "Título deve ter no máximo 30 caracteres";
+			isValid = false;
+		}
 
 		setErrors(newErrors);
 		return isValid;
 	};
 
 	const handleSave = async () => {
-		if (!validateFields()) {
-			toast.error("Por favor, preencha o título corretamente.");
+		const newErrors = validateFields();
+		if (!newErrors) {
+			toast.error("Por favor, preencha os campos corretamente");
 			return;
 		}
 
