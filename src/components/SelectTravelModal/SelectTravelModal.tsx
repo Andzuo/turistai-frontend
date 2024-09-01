@@ -22,11 +22,13 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 	const [imageUrl, setImageUrl] = useState<string | null>(null);
 
 	useEffect(() => {
+		let imageObjectURL: string | null = null;
+
 		const loadImage = async () => {
 			if (travel.image) {
 				try {
 					const imageBlob = await fetchImage(travel.image);
-					const imageObjectURL = URL.createObjectURL(imageBlob);
+					imageObjectURL = URL.createObjectURL(imageBlob);
 					setImageUrl(imageObjectURL);
 				} catch (error) {
 					console.error("Erro ao carregar imagem:", error);
@@ -37,11 +39,11 @@ const SelectTravelModal: React.FC<SelectTravelModalProps> = ({
 		loadImage();
 
 		return () => {
-			if (imageUrl) {
-				URL.revokeObjectURL(imageUrl);
+			if (imageObjectURL) {
+				URL.revokeObjectURL(imageObjectURL);
 			}
 		};
-	}, [travel.image, imageUrl]);
+	}, [travel.image]);
 
 	const handleClickOpen = () => {
 		setOpen(true);
