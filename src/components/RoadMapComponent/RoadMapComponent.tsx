@@ -86,9 +86,6 @@ export const RoadMapComponent: React.FC<RoadMapComponentProps> = ({
 				)}
 				<div className={s.roadMap__container__content}>
 					<h3 className={s.roadMap__container__title}>{roadMap.title}</h3>
-					<p className={s.roadMap__container__address}>
-						{`Endereço: ${roadMap.addres}`}
-					</p>
 					<div className={s.roadMap__container__checkbox}>
 						<label
 							className={s.roadMap__container__checkbox__visited}
