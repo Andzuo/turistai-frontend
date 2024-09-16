@@ -1,12 +1,12 @@
-import { useState } from "react";
 import Dialog from "@mui/material/Dialog";
-import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
 import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import { createTravel } from "../../services/TravelsService";
 import s from "./CreateTravelModal.module.css";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import { toast } from "react-toastify";
 dayjs.extend(customParseFormat);
 
 interface TravelModalProps {
@@ -135,6 +135,7 @@ export const CreateTavelModal: React.FC<TravelModalProps> = ({
 				<input
 					id="date"
 					type="date"
+					placeholder="Data da viagem"
 					value={data.date}
 					onChange={handleChange}
 				/>

@@ -31,15 +31,17 @@
     outline: none !important;
     padding: 1rem;
     background-color: #fff;
-}
-.modal__inputs__field, input {
+  }
+  .modal__inputs__field, input {
     width: 100%;
+    border: 1px solid gray;
+    color: #555;
     max-width: 300px;
     padding: 0.6rem;
     outline: none;
     border-radius: 10px;
-    border: 1px solid #1d1d1d;
  }
+ input:dec
 
 
 .modal__actions{
