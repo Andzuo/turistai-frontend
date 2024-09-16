@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Importar o hook de navegação
-import s from "./Login.module.css";
 import { login } from "../../services/LoginService";
+import s from "./Login.module.css";
 
 export const Login = () => {
-	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 
@@ -14,7 +14,7 @@ export const Login = () => {
 		e.preventDefault();
 
 		try {
-			const data = await login(username, password);
+			const data = await login(email, password);
 
 			const accessTokenData = {
 				token: data.acessToken,
@@ -33,16 +33,16 @@ export const Login = () => {
 				<h1 className={s.login__title}>Login</h1>
 				<form className={s.login__form} onSubmit={handleSubmit}>
 					<div className={s.login__form__group}>
-						<label htmlFor="username" className={s.login__form__label}>
-							Nome
+						<label htmlFor="email" className={s.login__form__label}>
+							Email
 						</label>
 						<input
-							type="text"
-							id="username"
+							type="email"
+							id="email"
 							className={s.login__form__input}
 							placeholder="Digite seu nome"
-							value={username}
-							onChange={(e) => setUsername(e.target.value)}
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 							required
 						/>
 					</div>

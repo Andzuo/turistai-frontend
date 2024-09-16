@@ -1,11 +1,12 @@
 import { useState } from "react";
-import s from "./Cadastro.module.css";
-import { createUser } from "../../services/UserService";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { createUser } from "../../services/UserService";
+import s from "./Cadastro.module.css";
 
 export const Cadastro = () => {
 	const [username, setUsername] = useState("");
+	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 	const [success, setSuccess] = useState("");
@@ -15,7 +16,7 @@ export const Cadastro = () => {
 		e.preventDefault();
 
 		try {
-			await createUser(username, password);
+			await createUser(username, email, password);
 			setSuccess("Usuário criado com sucesso.");
 			toast.success("Usuário criado com sucesso.");
 			navigate("/login");
@@ -40,6 +41,20 @@ export const Cadastro = () => {
 							placeholder="Digite seu nome"
 							value={username}
 							onChange={(e) => setUsername(e.target.value)}
+							required
+						/>
+					</div>
+					<div className={s.cadastro__form__group}>
+						<label htmlFor="email" className={s.cadastro__form__label}>
+							Email
+						</label>
+						<input
+							type="email"
+							id="email"
+							className={s.cadastro__form__input}
+							placeholder="Digite seu email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
 							required
 						/>
 					</div>
